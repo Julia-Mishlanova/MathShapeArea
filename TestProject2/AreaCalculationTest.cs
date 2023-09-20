@@ -8,6 +8,17 @@ namespace TestProject2
     public class AreaCalculationTest
     {
         [TestMethod]
+        public void TriangleAreaCalculation()
+        {
+            Triangle triangle = new Triangle(3.0, 4.0, 5.0);
+
+            double area = triangle.CalculateArea();
+            Assert.AreEqual(6.0, area);
+
+            Assert.IsTrue(triangle.IsRightTriangle());
+        }
+
+        [TestMethod]
         public void CircleAreaCalculation()
         {
             Circle circle = new Circle(6);
