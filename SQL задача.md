@@ -1,8 +1,14 @@
 запрос для выбора всех пар «Имя продукта – Имя категории».
 
-```SQL
-SELECT Products.ProductName, Categories.CategoryName
-FROM Products
-LEFT JOIN ProductCategory ON Products.ProductID = ProductCategory.ProductID
-LEFT JOIN Categories ON ProductCategory.CategoryID = Categories.CategoryID
+```
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName("MyApp").getOrCreate()
+
+result_df = products_df \
+	.join(product_category_df, "ProductID", "left") \
+	.join(categories_df, "CategoryID", "left") \
+	.select("ProductName", "CategoryName")
+
+result_df.show()
+spark.stop()
 ```
